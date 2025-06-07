@@ -18,6 +18,11 @@ namespace SProyectoFinal.Controllers
             return View();
         }
 
+        public IActionResult Proyectos()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
