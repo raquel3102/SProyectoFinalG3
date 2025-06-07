@@ -23,6 +23,20 @@ namespace SProyectoFinal.Controllers
             return View();
         }
 
+        public IActionResult RegistrarCuenta()
+        {
+            return View();
+        }
+        public IActionResult IniciarSesion()
+        {
+            return View();
+        }
+
+        public IActionResult RecuperarContrasenna()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
