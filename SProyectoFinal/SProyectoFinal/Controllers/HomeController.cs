@@ -6,11 +6,15 @@ namespace SProyectoFinal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //esta dependencia me permite acceder a valores que tengo el app settings, se ocupa por mas pequeño que sea el proyecto
+        private readonly IConfiguration _configuration;
+        //me permite acceder a servicios de internet
+        private readonly IHttpClientFactory _http;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IConfiguration configuration, IHttpClientFactory http)
         {
-            _logger = logger;
+            _configuration = configuration;
+            _http = http;
         }
 
         public IActionResult Index()
@@ -37,15 +41,5 @@ namespace SProyectoFinal.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

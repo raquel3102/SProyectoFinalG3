@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SProyectoFinal.Models
+﻿namespace ApiProyectoFinal.Models
 {
     public class UsuarioModel
     {
@@ -17,6 +12,6 @@ namespace SProyectoFinal.Models
         public string? Contraseña { get; set; }
 
         public int Rol { get; set; }
-        public bool Estado { get; set; } = true;
+        public bool Estado { get; set; } 
     }
 }
