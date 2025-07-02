@@ -205,6 +205,28 @@ INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (5, N'Evaluador')
 GO
 SET IDENTITY_INSERT [dbo].[tRoles] OFF
 GO
+SET IDENTITY_INSERT [dbo].[tUsuarios] ON 
+GO
+INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (1, N'111', N'Pedro', N'Pedro@correo.com', 2, N'12345', 1)
+GO
+SET IDENTITY_INSERT [dbo].[tUsuarios] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [uk_Cedula]    Script Date: 02/07/2025 11:59:53 ******/
+ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED 
+(
+	[Cedula] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [uk_Correo]    Script Date: 02/07/2025 11:59:53 ******/
+ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Correo] UNIQUE NONCLUSTERED 
+(
+	[Correo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
 ALTER TABLE [dbo].[tActividades]  WITH CHECK ADD  CONSTRAINT [FK__Actividad__Organ__4AB81AF0] FOREIGN KEY([OrganizadorID])
 REFERENCES [dbo].[tUsuarios] ([ID_Usuario])
 GO
@@ -279,5 +301,37 @@ ALTER TABLE [dbo].[tVoluntarios]  WITH CHECK ADD  CONSTRAINT [FK_tVoluntarios_Us
 REFERENCES [dbo].[tUsuarios] ([ID_Usuario])
 GO
 ALTER TABLE [dbo].[tVoluntarios] CHECK CONSTRAINT [FK_tVoluntarios_Usuarios]
+GO
+
+CREATE PROCEDURE [dbo].[InicioSesion]
+		@Cedula varchar(20),
+		@Contraseña varchar(10)
+AS
+BEGIN
+	SELECT ID_Usuario, Cedula, Nombre, Correo, Rol, Contraseña, Estado
+	FROM dbo.tUsuarios
+	WHERE Cedula = @Cedula
+	AND Contraseña = @Contraseña
+	AND Estado = 1
+END
+GO
+
+CREATE PROCEDURE [dbo].[RegistrarCuenta]
+		@Cedula varchar(20),
+		@Nombre varchar(100),
+		@Correo varchar(100),
+		@Rol int,
+		@Contraseña varchar(10),
+		@Estado bit
+AS
+BEGIN
+	IF NOT EXISTS(SELECT 1 FROM dbo.tUsuarios
+					WHERE Cedula = @Cedula
+					OR Correo = @Correo)
+	BEGIN
+		INSERT INTO dbo.tUsuarios(Cedula, Nombre, Correo, Rol, Contraseña, Estado)
+		VALUES (@Cedula,@Nombre, @Correo,2, @Contraseña,@Estado)
+	END
+END
 GO
 

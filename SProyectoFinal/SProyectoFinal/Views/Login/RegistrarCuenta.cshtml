@@ -1,4 +1,4 @@
-﻿@model SProyectoFinal.Models.UsuarioModel
+﻿@model UsuarioModel
 
 @{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
@@ -15,7 +15,7 @@
             <div class="card o-hidden border-0 shadow-lg" style="background-color: #FFFFFF; color: #333333;">
                 <div class="card-body p-4">
                     <div class="text-center">
-                        <h1 class="h4" style="color: #3B82F6;">Registrar Cuenta</h1>
+                        <h1 class="h4 mb-4" style="color: #3B82F6;">Registrar Cuenta</h1>
                     </div>
 
                     @if (ViewBag.Mensaje != null)
@@ -25,32 +25,35 @@
                         </div>
                     }
 
-                    @using (Html.BeginForm("RegistrarCuenta", "Home"))
-                    {
-                        <form class="user">
+                    <form class="form-horizontal m-t-20" id="loginform" asp-controller="Login" asp-action="RegistrarCuenta">
+                        
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.Cedula, new { @class = "form-control form-control-user", @placeholder = "Identificación", @style = "background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" })
+                            <input type="text" class="form-control form-control" placeholder="Identificación" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Cedula" />
                             </div>
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control form-control-user", @placeholder = "Nombre", @style = "background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" })
+                            <input type="text" class="form-control form-control" placeholder="Nombre Completo" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Nombre" />
                             </div>
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.Correo, new { @class = "form-control form-control-user", @placeholder = "Correo", @style = "background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" })
+                            <input type="email" class="form-control form-control" placeholder="Correo Electrónico" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Correo" />
                             </div>
+                        <div class="mb-4">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.Contraseña, new { @class = "form-control form-control-user", @placeholder = "Contraseña", @type = "password", @style = "background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" })
+                            <input type="password" class="form-control form-control" placeholder="Contraseña" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Contraseña" />
                             </div>
-                            <input type="submit" class="btn btn-block" value="Registrar Cuenta" style="background-color: #3B82F6; color: #FFFFFF; border: none;"
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-block" style="background-color: #3B82F6; color: #FFFFFF; border: none;"
                                    onmouseover="this.style.backgroundColor='#7C3AED'; this.style.color='#FFFFFF';"
-                                   onmouseout="this.style.backgroundColor='#3B82F6'; this.style.color='#FFFFFF';">
-                        </form>
-                    }
+                                   onmouseout="this.style.backgroundColor='#3B82F6'; this.style.color='#FFFFFF';">Registrar Cuenta</button>
+                        </div>
+                        
+                    </form>
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="@Url.Action("RecuperarContrasenna", "Home")" style="color: #7C3AED;">Recuperar Contraseña?</a>
+                        <a class="small" href="@Url.Action("RecuperarContrasenna", "Login")" style="color: #7C3AED;">Recuperar Contraseña?</a>
                     </div>
                     <div class="text-center">
-                        <a class="small" href="@Url.Action("IniciarSesion", "Home")" style="color: #7C3AED;">Iniciar Sesión</a>
+                        <a class="small" href="@Url.Action("IniciarSesion", "Login")" style="color: #7C3AED;">Iniciar Sesión</a>
                     </div>
                     <div class="text-center">
                         <a class="small" href="@Url.Action("Index", "Home")" style="color: #7C3AED;">Pantalla Principal!</a>
