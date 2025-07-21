@@ -20,22 +20,30 @@
                             Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.
                         </p>
                     </div>
-                    @using (Html.BeginForm("RecuperarContrasenna", "Home", FormMethod.Post))
-                    {
+                    <form class="form-horizontal m-t-20" id="loginform" asp-controller="Login" asp-action="RecuperarContrasenna">
+
+                        <input id="txtMensaje" type="hidden" value="@ViewBag.Mensaje" />
+                        @ViewBag.Mensaje
+
                         <div class="form-group">
-                            @Html.TextBoxFor(x => x.Correo, new { @class = "form-control form-control-user", @placeholder = "Ingresa tu correo electrónico", @style = "background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" })
+                            <input type="email" class="form-control form-control" placeholder="Ingresa tu correo electrónico." style="background-color: #FFFFFF; color: #333333; border: 1px solid #7C3AED;" asp-for="Correo"/>
                         </div>
-                        <input type="submit" class="btn btn-block" value="Restablecer Contraseña"
+
+                        <button type="submit" class="btn btn-block"
                                style="background-color: #3B82F6; color: #FFFFFF; border: none;"
                                onmouseover="this.style.backgroundColor='#7C3AED'; this.style.color='#FFFFFF';"
-                               onmouseout="this.style.backgroundColor='#3B82F6'; this.style.color='#FFFFFF';">
-                    }
+                                onmouseout="this.style.backgroundColor='#3B82F6'; this.style.color='#FFFFFF';">
+                            Restablecer Contraseña
+                        </button>
+                    </form>
+
+
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="@Url.Action("RegistrarCuenta", "Home")" style="color: #7C3AED;">Crear una Cuenta!</a>
+                        <a class="small" href="@Url.Action("RegistrarCuenta", "Login")" style="color: #7C3AED;">Crear una Cuenta!</a>
                     </div>
                     <div class="text-center">
-                        <a class="small" href="@Url.Action("IniciarSesion", "Home")" style="color: #7C3AED;">Iniciar Sesión!</a>
+                        <a class="small" href="@Url.Action("IniciarSesion", "Login")" style="color: #7C3AED;">Iniciar Sesión!</a>
                     </div>
                     <div class="text-center">
                         <a class="small" href="@Url.Action("Index", "Home")" style="color: #7C3AED;">Pantalla Principal!</a>

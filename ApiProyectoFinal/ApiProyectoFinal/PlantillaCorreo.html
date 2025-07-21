@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperación de Contraseña</title>
+    <style>
+        body {
+            background-color: #f3e8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4b0082;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff0ff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(75, 0, 130, 0.2);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #6a0dad;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .temp-password-box {
+            background-color: #e9d5ff;
+            border: 1px dashed #8a2be2;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .password {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4b0082;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+
+        .button {
+            background-color: #8a2be2;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #7a1fcf;
+            }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #6b4b8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recuperación de Contraseña</h1>
+        <p>Hola, @@NombreUsuario, hemos generado una contraseña temporal para que puedas acceder a tu cuenta:</p>
+
+        <div class="temp-password-box">
+            <strong>Contraseña temporal:</strong>
+            <div class="password">@@Contrasenna</div>
+        </div>
+
+        <p>Por seguridad, cambia esta contraseña inmediatamente después de iniciar sesión.</p>
+        <p>Este es un mensaje automatico. Por favor, <strong>no respondas a este correo</strong>,</p>
+
+        <<div class="footer">
+            &copy; 2025 RedMente | Seguridad de Acceso
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -4,7 +4,6 @@ GO
 CREATE DATABASE [ProyectoFinal]
 GO
 
-
 USE [ProyectoFinal]
 GO
 
@@ -176,7 +175,7 @@ CREATE TABLE [dbo].[tUsuarios](
 	[Nombre] [varchar](100) NOT NULL,
 	[Correo] [varchar](100) NOT NULL,
 	[Rol] [int] NOT NULL,
-	[Contraseña] [varchar](10) NOT NULL,
+	[Contraseña] [varchar](255) NOT NULL,
 	[Estado] [bit] NOT NULL,
  CONSTRAINT [PK__Usuarios__2B3DE798699986D3] PRIMARY KEY CLUSTERED 
 (
@@ -209,11 +208,13 @@ SET IDENTITY_INSERT [dbo].[tUsuarios] ON
 GO
 INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (1, N'111', N'Pedro', N'Pedro@correo.com', 2, N'12345', 1)
 GO
+INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (2, N'118490188', N'Raquel', N'rarias90588@ufide.ac.cr', 2, N'cqbjDITxmKmLv8IjXepFFg==', 1)
+GO
 SET IDENTITY_INSERT [dbo].[tUsuarios] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Cedula]    Script Date: 02/07/2025 11:59:53 ******/
+/****** Object:  Index [uk_Cedula]    Script Date: 21/07/2025 12:50:51 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED 
 (
 	[Cedula] ASC
@@ -221,7 +222,7 @@ ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Correo]    Script Date: 02/07/2025 11:59:53 ******/
+/****** Object:  Index [uk_Correo]    Script Date: 21/07/2025 12:50:51 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Correo] UNIQUE NONCLUSTERED 
 (
 	[Correo] ASC
@@ -303,9 +304,22 @@ GO
 ALTER TABLE [dbo].[tVoluntarios] CHECK CONSTRAINT [FK_tVoluntarios_Usuarios]
 GO
 
+CREATE PROCEDURE [dbo].[ActualizarContra]
+		@ID_Usuario int,
+		@Contraseña varchar(255)
+AS
+BEGIN
+
+	UPDATE dbo.tUsuarios
+	SET Contraseña = @Contraseña
+	WHERE ID_Usuario = @ID_Usuario
+
+END
+GO
+
 CREATE PROCEDURE [dbo].[InicioSesion]
 		@Cedula varchar(20),
-		@Contraseña varchar(10)
+		@Contraseña varchar(255)
 AS
 BEGIN
 	SELECT ID_Usuario, Cedula, Nombre, Correo, Rol, Contraseña, Estado
@@ -321,7 +335,7 @@ CREATE PROCEDURE [dbo].[RegistrarCuenta]
 		@Nombre varchar(100),
 		@Correo varchar(100),
 		@Rol int,
-		@Contraseña varchar(10),
+		@Contraseña varchar(255),
 		@Estado bit
 AS
 BEGIN
@@ -332,6 +346,16 @@ BEGIN
 		INSERT INTO dbo.tUsuarios(Cedula, Nombre, Correo, Rol, Contraseña, Estado)
 		VALUES (@Cedula,@Nombre, @Correo,2, @Contraseña,@Estado)
 	END
+END
+GO
+
+CREATE PROCEDURE [dbo].[RevisarCorreo]
+		@Correo varchar(100)
+AS
+BEGIN
+	SELECT ID_Usuario, Cedula, Nombre, Correo
+	FROM dbo.tUsuarios
+	WHERE Correo = @Correo
 END
 GO
 

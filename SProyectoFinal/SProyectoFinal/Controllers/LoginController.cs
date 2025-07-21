@@ -31,7 +31,7 @@ namespace SProyectoFinal.Controllers
                 if (resultado.IsSuccessStatusCode)
                     return RedirectToAction("Index", "Home");
 
-                ViewBag.Mensaje = "No se ha podido registrar su información";
+                ViewBag.Mensaje = "No se ha podido registrar su información, por favor intente más tarde.";
                 return View();
             }
         }
@@ -54,14 +54,44 @@ namespace SProyectoFinal.Controllers
                     return RedirectToAction("Index", "Home");
 
 
-                ViewBag.Mensaje = "No se ha podido validar su información";
+                ViewBag.Mensaje = "No se ha podido validar su información, por favor intente más tarde.";
                 return View();
             }
         }
 
+        [HttpGet]
         public IActionResult RecuperarContrasenna()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult RecuperarContrasenna(UsuarioModel usuario)
+        {
+            using (var http = _http.CreateClient())
+            {
+                http.BaseAddress = new Uri(_configuration.GetSection("Api:ApiUrlRaquel").Value!);
+                var resultado = http.PostAsJsonAsync("api/Login/RecuperarContrasenna", usuario).Result;
+
+                if (!resultado.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    var respuesta = resultado.Content.ReadFromJsonAsync<Respuestas>().Result;
+                    ViewBag.Mensaje = respuesta!.Mensaje;
+                    return View();
+                }
+
+            }
+        }
+
+        [HttpGet]
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
