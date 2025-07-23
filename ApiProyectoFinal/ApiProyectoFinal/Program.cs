@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<IRespuestas, Respuestas>();
+builder.Services.AddScoped<IUtilitarios, Utilitarios>();
 
 
 builder.Services.AddSwaggerGen(options =>
@@ -52,7 +52,7 @@ builder.Services.AddAuthentication(opt =>
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             context.Response.ContentType = "application/json";
 
-            var _utilitarios = context.HttpContext.RequestServices.GetRequiredService<IRespuestas>();
+            var _utilitarios = context.HttpContext.RequestServices.GetRequiredService<IUtilitarios>();
             var respuesta = _utilitarios.RespuestaIncorrecta("JWTNoValido");
 
             var result = JsonSerializer.Serialize(respuesta);

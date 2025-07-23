@@ -1,6 +1,9 @@
-﻿using ApiProyectoFinal.Models;
+﻿using Microsoft.Extensions.Configuration;
+using System.Reflection.Metadata.Ecma335;
+using ApiProyectoFinal.Models;
 using ApiProyectoFinal.Services;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -13,19 +16,22 @@ namespace ApiProyectoFinal.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IHostEnvironment _environment;
-        private readonly IRespuestas _respuesta;
+       
+        private readonly IUtilitarios _utilitarios;
 
-        public LoginController(IConfiguration configuration, IHostEnvironment environment, IRespuestas respuestas)
+        public LoginController(IConfiguration configuration, IHostEnvironment environment, IUtilitarios utilitarios)
         {
             _configuration = configuration;
             _environment = environment;
-            _respuesta = respuestas;
+            _utilitarios = utilitarios;
+           
         }
 
         [HttpPost]
         [Route("RegistrarCuenta")]
-        public IActionResult Registro(UsuarioModel usuario)
+        public IActionResult Registro(Autenticacion usuario)
         {
+
             using (var contexto = new SqlConnection((_configuration.GetSection("ConnectionStrings:Connection").Value)))
             {
                 //insert, delete or update
@@ -42,11 +48,11 @@ namespace ApiProyectoFinal.Controllers
                 });
                 if (resultado > 0)
                 {
-                    return Ok(_respuesta.RespuestaCorrecta(usuario));
+                    return Ok(_utilitarios.RespuestaCorrecta(usuario));
                 }
                 else
                 {
-                    return BadRequest(_respuesta.RespuestaIncorrecta("Su info no fue registrada correctamente"));
+                    return BadRequest(_utilitarios.RespuestaIncorrecta("Su info no fue registrada correctamente"));
                 }
             }
 
@@ -54,30 +60,32 @@ namespace ApiProyectoFinal.Controllers
 
         [HttpPost]
         [Route("IniciarSesion")]
-        public IActionResult IniciarSesion(UsuarioModel usuario)
+        [AllowAnonymous]
+        public IActionResult IniciarSesion(Autenticacion autenticacion)
         {
             using (var contexto = new SqlConnection((_configuration.GetSection("ConnectionStrings:Connection").Value)))
             {
                 //select
-                var resultado = contexto.QueryFirstOrDefault("InicioSesion", new
+                var resultado = contexto.QueryFirstOrDefault<Autenticacion>("ValidarInicioSesion", new
                 {
-                    usuario.Cedula,
-                    usuario.Contraseña
+                    autenticacion.Cedula,
+                    autenticacion.Contraseña
                 });
                 if (resultado != null)
                 {
-                    return Ok(_respuesta.RespuestaCorrecta(resultado));
+                    resultado.Token = _utilitarios.GenerarToken(resultado.ID_Usuario);
+                    return Ok(_utilitarios.RespuestaCorrecta(resultado));
                 }
                 else
                 {
-                    return BadRequest(_respuesta.RespuestaIncorrecta("Su info no fue validada correctamente"));
+                    return BadRequest(_utilitarios.RespuestaIncorrecta("Su información no fue validada correctamente"));
                 }
             }
         }
 
         [HttpPost]
         [Route("RecuperarContrasenna")]
-        public IActionResult RecuperarContrasenna(UsuarioModel usuario)
+        public IActionResult RecuperarContrasenna(Autenticacion usuario)
         {
             using (var contexto = new SqlConnection((_configuration.GetSection("ConnectionStrings:Connection").Value)))
             {
@@ -89,8 +97,8 @@ namespace ApiProyectoFinal.Controllers
                 if (resultado != null)
                 {
 
-                    var ContrasennaCorreo = _respuesta.CrearContrasennaNueva();
-                    var Contrasenna = _respuesta.Encrypt(ContrasennaCorreo);
+                    var ContrasennaCorreo = _utilitarios.GenerarContrasena();
+                    var Contrasenna = _utilitarios.Encrypt(ContrasennaCorreo);
                     var resultadoNuevo = contexto.Execute("ActualizarContra", new
                     {
                         resultado.ID_Usuario,
@@ -104,13 +112,13 @@ namespace ApiProyectoFinal.Controllers
                         html = html.Replace("@@Nombre", resultado.Nombre);
                         html = html.Replace("@@Contrasenna", ContrasennaCorreo);
 
-                        _respuesta.EnviarCorreo(resultado.Correo!, "Acceso al sistema", html);
-                        return Ok(_respuesta.RespuestaCorrecta(resultado));
+                        _utilitarios.EnviarCorreo(resultado.Correo!, "Acceso al sistema", html);
+                        return Ok(_utilitarios.RespuestaCorrecta(resultado));
                     }
 
                 }
 
-                return BadRequest(_respuesta.RespuestaIncorrecta("Su información no pudo ser validada en este momento, por favor intente más tarde."));
+                return BadRequest(_utilitarios.RespuestaIncorrecta("Su información no pudo ser validada en este momento, por favor intente más tarde."));
             }
         }
     }
