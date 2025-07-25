@@ -1,0 +1,34 @@
+﻿@model List<Curso>
+
+<h2>Cursos disponibles</h2>
+
+@if (!Model.Any())
+{
+    <p>No hay cursos disponibles.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Requisitos</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var curso in Model)
+            {
+                <tr>
+                    <td>@curso.Nombre</td>
+                    <td>@curso.Descripcion</td>
+                    <td>@curso.Requisitos</td>
+                    <td>@curso.FechaInicio.ToShortDateString()</td>
+                    <td>@curso.FechaFin.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
