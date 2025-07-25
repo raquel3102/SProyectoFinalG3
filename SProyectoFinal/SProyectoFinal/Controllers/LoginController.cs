@@ -8,6 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SProyectoFinal.Controllers
 {
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class LoginController : Controller
     {
 
@@ -28,18 +29,24 @@ namespace SProyectoFinal.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarCuenta(UsuarioModel usuario)
+        public IActionResult RegistrarCuenta(Autenticacion usuario)
         {
+            usuario.Contraseña = _utilitarios.Encrypt(usuario.Contraseña!);
             using (var http = _http.CreateClient())
             {
                 http.BaseAddress = new Uri(_configuration.GetSection("Api:ApiUrlRaquel").Value!);
                 var resultado = http.PostAsJsonAsync("api/Login/RegistrarCuenta", usuario).Result;
 
                 if (resultado.IsSuccessStatusCode)
-                    return RedirectToAction("Login", "IniciarSesion");
-
-                ViewBag.Mensaje = "No se ha podido registrar su información, por favor intente más tarde.";
-                return View();
+                {
+                    return RedirectToAction("IniciarSesion", "Login"); 
+                }
+                else
+                {
+                    var respuesta = resultado.Content.ReadFromJsonAsync<RespuestasEstandar>().Result;
+                    ViewBag.Mensaje = respuesta!.Mensaje;
+                    return View();
+                }
             }
         }
 
@@ -52,6 +59,7 @@ namespace SProyectoFinal.Controllers
         [HttpPost]
         public IActionResult IniciarSesion(Autenticacion autenticacion)
         {
+            autenticacion.Contraseña = _utilitarios.Encrypt(autenticacion.Contraseña!);
 
             using (var http = _http.CreateClient())
             {
@@ -85,7 +93,7 @@ namespace SProyectoFinal.Controllers
         }
 
         [HttpPost]
-        public IActionResult RecuperarContrasenna(UsuarioModel usuario)
+        public IActionResult RecuperarContrasenna(Autenticacion usuario)
         {
             using (var http = _http.CreateClient())
             {

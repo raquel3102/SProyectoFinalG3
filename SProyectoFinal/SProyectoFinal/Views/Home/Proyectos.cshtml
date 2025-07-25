@@ -61,12 +61,16 @@
         <div class="card-header text-white" style="background-color: #10B981;">
             <h5 class="m-0">Lista de Cursos</h5>
         </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Curso 1:</strong><span> Introducción a la Programación </span><button class="btn btn-link" style="color: #7C3AED; float: right;">Ver Detalles</button></li>
-                <li class="list-group-item"><strong>Curso 2:</strong><span> Gestión de Proyectos </span><button class="btn btn-link" style="color: #7C3AED; float: right;">Ver Detalles</button></li>
-            </ul>
+        <div class="card-header text-white" style="background-color: #10B981;">
+      
+
+                <!-- 🚀 Botón que dirige a la vista dinámica ListarCursos -->
+                <a asp-controller="Home" asp-action="ListarCursos" class="btn btn-light text-success font-weight-bold">
+                    Ver todos los cursos
+                </a>
+           
         </div>
+
     </div>
 
 </div>

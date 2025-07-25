@@ -10,6 +10,7 @@ using Microsoft.Data.SqlClient;
 
 namespace ApiProyectoFinal.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -29,6 +30,7 @@ namespace ApiProyectoFinal.Controllers
 
         [HttpPost]
         [Route("RegistrarCuenta")]
+        [AllowAnonymous]
         public IActionResult Registro(Autenticacion usuario)
         {
 
