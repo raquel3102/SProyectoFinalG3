@@ -1,0 +1,30 @@
+﻿@model List<Suscripciones>
+@{
+    ViewData["Title"] = "Usuarios suscritos";
+}
+<h2>Usuarios suscritos a esta actividad</h2>
+
+@if (!Model.Any())
+{
+    <p>Nadie se ha suscrito a esta actividad aún.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Fecha de suscripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.UsuarioID</td>
+                    <td>@(s.FechaSuscripcion.HasValue ? s.FechaSuscripcion.Value.ToString("dd/MM/yyyy") : "")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

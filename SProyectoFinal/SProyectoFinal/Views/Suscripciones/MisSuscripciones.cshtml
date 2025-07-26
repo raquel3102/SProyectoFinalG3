@@ -1,0 +1,40 @@
+﻿@model List<Actividades>
+@{
+    ViewData["Title"] = "Mis suscripciones";
+    // var usuarioId = 1;
+}
+<h2 class="text-dark">
+    <i class="fas fa-tasks me-2" style="color: #7C3AED;"></i> Mis actividades suscritas
+</h2>
+
+    <p>Aún no estás suscrito a ninguna actividad.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Ubicación</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @* @foreach (var act in Model)
+            {
+                <tr>
+                    <td>@act.Titulo</td>
+                    <td>@(act.Fecha.HasValue ? act.Fecha.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td>@act.Tipo</td>
+                    <td>@act.Ubicacion</td>
+                    <td>
+                        <form asp-action="Cancelar" method="post">
+                            <input type="hidden" name="suscripcionId" value="@act.ActividadID" />
+                            <input type="hidden" name="usuarioId" value="@usuarioId" />
+                            <button class="btn btn-danger btn-sm" type="submit">Cancelar suscripción</button>
+                        </form>
+                    </td>
+                </tr>
+            } *@
+        </tbody>
+    </table>

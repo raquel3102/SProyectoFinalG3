@@ -4,9 +4,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient();
+
+builder.Services.AddHttpClient("API", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Start:ApiUrlRaquel"]!);
+});
+
+builder.Services.AddScoped<IRespuestas, Respuestas>();
 builder.Services.AddSession();
 builder.Services.AddScoped<IUtilitarios, Utilitarios>();
+
 
 var app = builder.Build();
 

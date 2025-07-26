@@ -1,0 +1,24 @@
+﻿@model Actividades
+@{
+    ViewData["Title"] = "Detalle de la actividad";
+    var usuarioId = 1;
+}
+<h2>Detalle de actividad</h2>
+
+<div class="card p-3">
+    <h4>@Model.Titulo</h4>
+    <p>@(Model.Fecha.HasValue ? Model.Fecha.Value.ToString("dd/MM/yyyy") : "")</p>
+    <p><strong>Tipo:</strong> @Model.Tipo</p>
+    <p><strong>Ubicación:</strong> @Model.Ubicacion</p>
+    <p><strong>Descripción:</strong> @Model.Descripcion</p>
+    @if (!string.IsNullOrEmpty(Model.LinkLlamada))
+    {
+        <p><strong>Enlace:</strong> <a href="@Model.LinkLlamada" target="_blank">@Model.LinkLlamada</a></p>
+    }
+
+    <form asp-action="Suscribirse" method="post">
+        <input type="hidden" name="usuarioId" value="@usuarioId" />
+        <input type="hidden" name="actividadId" value="@Model.ActividadID" />
+        <button class="btn btn-success" type="submit">Suscribirme a esta actividad</button>
+    </form>
+</div>

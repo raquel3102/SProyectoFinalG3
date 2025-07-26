@@ -1,0 +1,76 @@
+﻿@model Actividades
+@{
+    ViewData["Title"] = "Crear actividad";
+}
+
+<div class="container mt-4 px-4">
+    <h3 class="mb-4 text-dark">
+        <i class="fas fa-calendar-plus me-2" style="color: #7C3AED;"></i> Registrar nueva actividad
+    </h3>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-action="Crear" method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" asp-for="Titulo">
+                        <i class="fas fa-heading me-2" style="color: #7C3AED;"></i> Título
+                    </label>
+                    <input asp-for="Titulo" class="form-control" placeholder="Título de la actividad" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold" asp-for="Fecha">
+                            <i class="fas fa-calendar-alt me-2" style="color: #7C3AED;"></i> Fecha
+                        </label>
+                        <input asp-for="Fecha" type="date" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold" asp-for="Tipo">
+                            <i class="fas fa-tags me-2" style="color: #7C3AED;"></i> Tipo
+                        </label>
+                        <input asp-for="Tipo" class="form-control" placeholder="Ej. Taller, Conferencia" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" asp-for="Ubicacion">
+                        <i class="fas fa-map-marker-alt me-2" style="color: #7C3AED;"></i> Ubicación
+                    </label>
+                    <input asp-for="Ubicacion" class="form-control" placeholder="Lugar físico o virtual" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" asp-for="Descripcion">
+                        <i class="fas fa-align-left me-2" style="color: #7C3AED;"></i> Descripción
+                    </label>
+                    <textarea asp-for="Descripcion" class="form-control" rows="4" placeholder="Describe brevemente el objetivo o contenido..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" asp-for="LinkLlamada">
+                        <i class="fas fa-link me-2" style="color: #7C3AED;"></i> Link de llamada (opcional)
+                    </label>
+                    <input asp-for="LinkLlamada" class="form-control" placeholder="https://..." />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" asp-for="OrganizadorID">
+                        <i class="fas fa-user-tie me-2" style="color: #7C3AED;"></i> Organizador
+                    </label>
+                    <select asp-for="OrganizadorID" class="form-select" id="nombreDropdown">
+                        <option value="">-- Seleccione organizador --</option>
+                        <!-- Aquí se espera cargar dinámicamente las opciones -->
+                    </select>
+                    <input type="hidden" asp-for="OrganizadorID" id="hiddenID_Rol" />
+                </div>
+
+                <div class="text-end">
+                    <button class="btn btn-success">
+                        <i class="fas fa-save me-2"></i> Guardar actividad
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
