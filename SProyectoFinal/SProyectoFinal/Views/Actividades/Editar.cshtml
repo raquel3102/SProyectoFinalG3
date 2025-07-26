@@ -1,0 +1,35 @@
+﻿@model Actividades
+@{
+    ViewData["Title"] = "Editar actividad";
+}
+<h2>Editar actividad</h2>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="ActividadID" />
+
+    <div class="form-group">
+        <label>Título</label>
+        <input asp-for="Titulo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Fecha</label>
+        <input asp-for="Fecha" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Tipo</label>
+        <input asp-for="Tipo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Ubicación</label>
+        <input asp-for="Ubicacion" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Link de llamada</label>
+        <input asp-for="LinkLlamada" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Actualizar</button>
+</form>

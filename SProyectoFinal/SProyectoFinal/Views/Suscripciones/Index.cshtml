@@ -1,0 +1,46 @@
+﻿@model List<Actividades>
+@{
+    ViewData["Title"] = "Actividades disponibles";
+    // var usuarioId = 1; //Usuario
+}
+<div class="container mt-4 px-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-dark">
+            <i class="fas fa-tasks me-2" style="color: #7C3AED;"></i> Actividades disponibles
+        </h3>
+        <a asp-action="MisSuscripciones" class="btn btn-success">
+            <i class="fas fa-plus-circle me-2"></i> Ver mis suscripciones
+        </a>
+    </div>
+    <p>No hay actividades disponibles para suscripción.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Ubicación</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @* @foreach (var act in Model)
+            {
+                <tr>
+                    <td>@act.Titulo</td>
+                    <td>@(act.Fecha.HasValue ? act.Fecha.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td>@act.Tipo</td>
+                    <td>@act.Ubicacion</td>
+                    <td>
+                        <form asp-action="Suscribirse" method="post">
+                            <input type="hidden" name="usuarioId" value="@usuarioId" />
+                            <input type="hidden" name="actividadId" value="@act.ActividadID" />
+                            <button class="btn btn-primary btn-sm" type="submit">Suscribirse</button>
+                        </form>
+                    </td>
+                </tr>
+            } *@
+        </tbody>
+    </table>
+</div>
