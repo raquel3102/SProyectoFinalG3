@@ -16,6 +16,6 @@
         public bool Estado { get; set; } = true;
 
         public string? Token { get; set; }
-        public string? NombreRol { get; set; }
+        public string? Nombre_Rol { get; set; }
     }
 }

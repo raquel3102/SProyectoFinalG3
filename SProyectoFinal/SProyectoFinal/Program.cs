@@ -10,7 +10,6 @@ builder.Services.AddHttpClient("API", client =>
     client.BaseAddress = new Uri(builder.Configuration["Start:ApiUrlRaquel"]!);
 });
 
-builder.Services.AddScoped<IRespuestas, Respuestas>();
 builder.Services.AddSession();
 builder.Services.AddScoped<IUtilitarios, Utilitarios>();
 

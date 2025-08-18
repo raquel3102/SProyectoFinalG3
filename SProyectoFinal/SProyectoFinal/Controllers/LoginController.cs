@@ -72,6 +72,7 @@ namespace SProyectoFinal.Controllers
                     HttpContext.Session.SetString("IdUsuario", datos?.Contenido?.ID_Usuario.ToString()!);
                     HttpContext.Session.SetString("Nombre", datos?.Contenido?.Nombre!);
                     HttpContext.Session.SetString("IdRol", datos?.Contenido?.Rol.ToString()!);
+                    HttpContext.Session.SetString("NombreRol", datos?.Contenido?.Nombre_Rol!);
                     HttpContext.Session.SetString("JWT", datos?.Contenido?.Token!);
                     return RedirectToAction("Index", "Home");
                  }
