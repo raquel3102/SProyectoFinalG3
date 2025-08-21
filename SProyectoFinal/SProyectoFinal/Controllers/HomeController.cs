@@ -35,61 +35,58 @@ namespace SProyectoFinal.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListarCursos()
+public IActionResult ListarCursos()
+{
+    try
+    {
+        var usuarioIdStr = HttpContext.Session.GetString("IdUsuario");
+        if (string.IsNullOrEmpty(usuarioIdStr) || !int.TryParse(usuarioIdStr, out int usuarioId))
         {
-            try
+            ViewBag.Mensaje = "Debe iniciar sesión para ver los cursos.";
+            return View(new List<Curso>());
+        }
+
+        using (var http = _http.CreateClient())
+        {
+            http.BaseAddress = new Uri(_configuration.GetSection("Start:ApiUrlRaquel").Value!);
+            http.DefaultRequestHeaders.Add("Authorization", "Bearer " + HttpContext.Session.GetString("JWT"));
+
+            // Traer todos los cursos
+            var resultadoCursos = http.GetAsync("api/Home/Listar").Result;
+
+            if (!resultadoCursos.IsSuccessStatusCode)
             {
-                using (var http = _http.CreateClient())
-                {
-                    http.BaseAddress = new Uri(_configuration.GetSection("Start:ApiUrlRaquel").Value!);
-
-                    var resultado = http.GetAsync("api/Home/Listar").Result;
-
-                    if (resultado.IsSuccessStatusCode)
-                    {
-                        var cursos = resultado.Content.ReadFromJsonAsync<List<Curso>>().Result;
-                        var json = resultado.Content.ReadAsStringAsync().Result;
-                        Console.WriteLine("[DEBUG] JSON recibido: " + json);
-
-
-                        if (cursos == null || !cursos.Any())
-                        {
-                            ViewBag.Mensaje = "No se encontraron cursos disponibles.";
-
-                            Console.WriteLine("[DEBUG] Cursos encontrados: " + cursos?.Count);
-                            return View(new List<Curso>());
-
-                        }
-
-                        return View(cursos);
-                    }
-                    else
-                    {
-                        var contenido = resultado.Content.ReadAsStringAsync().Result;
-
-                        if (!string.IsNullOrWhiteSpace(contenido))
-                        {
-                            var error = JsonSerializer.Deserialize<RespuestasEstandar>(contenido, new JsonSerializerOptions
-                            {
-                                PropertyNameCaseInsensitive = true
-                            });
-
-                            ViewBag.Mensaje = error?.Mensaje ?? "Error desconocido.";
-                        }
-                        else
-                        {
-                            ViewBag.Mensaje = "Error desconocido. No se recibió contenido.";
-                        }
-
-                        return View(new List<Curso>());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Mensaje = $"Error inesperado: {ex.Message}";
+                ViewBag.Mensaje = "No se pudo obtener la lista de cursos.";
                 return View(new List<Curso>());
             }
+
+            var cursos = resultadoCursos.Content.ReadFromJsonAsync<List<Curso>>().Result;
+
+            if (cursos == null || !cursos.Any())
+            {
+                ViewBag.Mensaje = "No se encontraron cursos disponibles.";
+                return View(new List<Curso>());
+            }
+
+            // Traer cursos en los que el usuario ya está inscrito
+            var resultadoInscripciones = http.GetAsync($"api/Inscripcion/MisCursos/{usuarioId}").Result;
+            var cursosInscritos = resultadoInscripciones.Content.ReadFromJsonAsync<List<int>>().Result ?? new List<int>();
+
+            // Marcar cursos inscritos
+            foreach (var curso in cursos)
+            {
+                curso.EstaInscrito = cursosInscritos.Contains(curso.CursoID);
+            }
+
+            return View(cursos);
         }
+    }
+    catch (Exception ex)
+    {
+        ViewBag.Mensaje = $"Error inesperado: {ex.Message}";
+        return View(new List<Curso>());
+    }
+}
+
     }
 }

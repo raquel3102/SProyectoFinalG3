@@ -16,6 +16,7 @@ else
                 <th>Requisitos</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,19 @@ else
                     <td>@curso.Requisitos</td>
                     <td>@curso.FechaInicio.ToShortDateString()</td>
                     <td>@curso.FechaFin.ToShortDateString()</td>
+                    <td>
+                        @if (curso.EstaInscrito)
+                        {
+                            <button class="btn btn-success" disabled>Inscrito</button>
+                        }
+                        else
+                        {
+                            <form asp-controller="Inscripcion" asp-action="Inscribir" method="post">
+                                <input type="hidden" name="cursoId" value="@curso.CursoID" />
+                                <button type="submit" class="btn btn-primary">Inscribirme</button>
+                            </form>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
