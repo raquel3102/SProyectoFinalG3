@@ -1,0 +1,39 @@
+﻿@model List<SProyectoFinal.Models.ReporteImpactoViewModel>
+
+@{
+    ViewData["Title"] = "Reportes de Impacto";
+}
+
+<h2 class="mb-4">Reportes de Impacto</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Curso</th>
+            <th>Actividad</th>
+            <th>Inscripción</th>
+            <th>Suscripción</th>
+            <th>Patrocinador</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.ReporteID</td>
+                <td>@r.Descripcion</td>
+                <td>@r.FechaGeneracion.ToString("dd/MM/yyyy")</td>
+                <td>@r.NombreUsuario</td>
+                <td>@r.NombreCurso</td>
+                <td>@r.NombreActividad</td>
+                <td>@r.NombreInscripcion</td>
+                <td>@r.NombreSuscripcion</td>
+                <td>@r.Patrocinador</td>
+            </tr>
+        }
+    </tbody>
+</table>
