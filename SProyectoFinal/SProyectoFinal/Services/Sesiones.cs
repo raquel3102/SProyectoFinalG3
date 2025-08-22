@@ -17,4 +17,20 @@ namespace SProyectoFinal.Services
             }
         }
     }
+    public class Administradores : ActionFilterAttribute
+    {
+        //el executing se ejecuta antes de llegar al controlador 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (context.HttpContext.Session.GetString("IdRol") != "1")
+            {
+                context.Result = new RedirectToActionResult("Principal", "Home", null);
+            }
+            else
+            {
+                base.OnActionExecuting(context);
+            }
+        }
+
+    }
 }

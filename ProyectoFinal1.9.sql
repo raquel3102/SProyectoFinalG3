@@ -1,12 +1,15 @@
 USE [master]
 GO
-/****** Object:  Database [ProyectoFinal]    Script Date: 18/08/2025 14:25:24 ******/
+/****** Object:  Database [ProyectoFinal]    Script Date: 22/08/2025 14:45:16 ******/
 CREATE DATABASE [ProyectoFinal]
 GO
-
 USE [ProyectoFinal]
 GO
-
+/****** Object:  Table [dbo].[tActividades]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tActividades](
 	[ActividadID] [int] IDENTITY(1,1) NOT NULL,
 	[Titulo] [varchar](100) NOT NULL,
@@ -22,7 +25,11 @@ CREATE TABLE [dbo].[tActividades](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tCertificados]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tCertificados](
 	[CertificadoID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -35,7 +42,11 @@ CREATE TABLE [dbo].[tCertificados](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tCursos]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tCursos](
 	[CursoID] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](100) NOT NULL,
@@ -49,7 +60,11 @@ CREATE TABLE [dbo].[tCursos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tErrores]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tErrores](
 	[ErrorID] [int] IDENTITY(1,1) NOT NULL,
 	[MensajeError] [text] NOT NULL,
@@ -60,7 +75,11 @@ CREATE TABLE [dbo].[tErrores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tEvaluadores]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tEvaluadores](
 	[ID_Evaluador] [int] NOT NULL,
 	[TotalEvaluados] [int] NOT NULL,
@@ -72,7 +91,11 @@ CREATE TABLE [dbo].[tEvaluadores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tInscripciones]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tInscripciones](
 	[InscripcionID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -84,7 +107,11 @@ CREATE TABLE [dbo].[tInscripciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tNotificaciones]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tNotificaciones](
 	[NotificacionID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -96,7 +123,11 @@ CREATE TABLE [dbo].[tNotificaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tPatrocinadores]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tPatrocinadores](
 	[ID_Patrocinador] [int] NOT NULL,
 	[TotalContribuciones] [int] NOT NULL,
@@ -108,7 +139,11 @@ CREATE TABLE [dbo].[tPatrocinadores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tPerfiles]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tPerfiles](
 	[PerfiID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -121,7 +156,11 @@ CREATE TABLE [dbo].[tPerfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tRecomendaciones]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tRecomendaciones](
 	[RecomendacionID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -134,7 +173,11 @@ CREATE TABLE [dbo].[tRecomendaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tReportesImpacto]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tReportesImpacto](
 	[ReporteID] [int] IDENTITY(1,1) NOT NULL,
 	[PatrocinadorID] [int] NOT NULL,
@@ -146,7 +189,11 @@ CREATE TABLE [dbo].[tReportesImpacto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tRoles]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tRoles](
 	[ID_Rol] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre_Rol] [varchar](50) NOT NULL,
@@ -156,7 +203,11 @@ CREATE TABLE [dbo].[tRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tSuscripciones]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tSuscripciones](
 	[SuscripcionID] [int] IDENTITY(1,1) NOT NULL,
 	[UsuarioID] [int] NOT NULL,
@@ -168,7 +219,11 @@ CREATE TABLE [dbo].[tSuscripciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tUsuarios]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tUsuarios](
 	[ID_Usuario] [int] IDENTITY(1,1) NOT NULL,
 	[Cedula] [varchar](20) NOT NULL,
@@ -183,7 +238,11 @@ CREATE TABLE [dbo].[tUsuarios](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tVoluntarios]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tVoluntarios](
 	[ID_Usuario] [int] NOT NULL,
 	[Profesion] [varchar](50) NOT NULL,
@@ -192,7 +251,7 @@ CREATE TABLE [dbo].[tVoluntarios](
 GO
 SET IDENTITY_INSERT [dbo].[tRoles] ON 
 GO
-INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (1, N'Administrador')
+INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (1, N'Admin')
 GO
 INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (2, N'Usuario')
 GO
@@ -200,13 +259,15 @@ SET IDENTITY_INSERT [dbo].[tRoles] OFF
 GO
 SET IDENTITY_INSERT [dbo].[tUsuarios] ON 
 GO
-INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (2, N'118490588', N'RAQUEL ARIANA ARIAS SANCHO', N'raquel@correo.com', 2, N'03VicMhh+yxPhJlfIKVmdQ==', 1)
+INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (2, N'118490588', N'RAQUEL ARIANA ARIAS SANCHO', N'rarias90588@ufide.ac.cr', 2, N'03VicMhh+yxPhJlfIKVmdQ==', 1)
+GO
+INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (3, N'111111111', N'Pedro', N'pedro@correo.com', 1, N'03VicMhh+yxPhJlfIKVmdQ==', 1)
 GO
 SET IDENTITY_INSERT [dbo].[tUsuarios] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Cedula]    Script Date: 18/08/2025 14:25:24 ******/
+/****** Object:  Index [uk_Cedula]    Script Date: 22/08/2025 14:45:16 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED 
 (
 	[Cedula] ASC
@@ -214,7 +275,7 @@ ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Correo]    Script Date: 18/08/2025 14:25:24 ******/
+/****** Object:  Index [uk_Correo]    Script Date: 22/08/2025 14:45:16 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Correo] UNIQUE NONCLUSTERED 
 (
 	[Correo] ASC
@@ -295,6 +356,11 @@ REFERENCES [dbo].[tUsuarios] ([ID_Usuario])
 GO
 ALTER TABLE [dbo].[tVoluntarios] CHECK CONSTRAINT [FK_tVoluntarios_Usuarios]
 GO
+/****** Object:  StoredProcedure [dbo].[ActualizarContra]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE PROCEDURE [dbo].[ActualizarContra]
 		@ID_Usuario int,
@@ -307,6 +373,30 @@ BEGIN
 	WHERE ID_Usuario = @ID_Usuario
 
 END
+GO
+/****** Object:  StoredProcedure [dbo].[ActualizarContrasenna]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[ActualizarContrasenna]
+		@ID_Usuario int,
+		@Contraseña varchar(255)
+AS
+BEGIN
+
+	UPDATE dbo.tUsuarios
+	SET Contraseña = @Contraseña
+	WHERE ID_Usuario = @ID_Usuario
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[ActualizarUsuario]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[ActualizarUsuario]
@@ -330,6 +420,11 @@ IF NOT EXISTS(SELECT 1 FROM dbo.tUsuarios
 	END
 END
 GO
+/****** Object:  StoredProcedure [dbo].[ConsultarUsuario]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE PROCEDURE [dbo].[ConsultarUsuario]
 		@ID_Usuario int
@@ -341,6 +436,35 @@ BEGIN
 	WHERE ID_Usuario = @ID_Usuario
 END
 GO
+/****** Object:  StoredProcedure [dbo].[InscribirUsuario]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[InscribirUsuario]
+    @UsuarioID INT,
+    @CursoID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Evitar inscripciones duplicadas
+    IF NOT EXISTS (SELECT 1 FROM tInscripciones WHERE UsuarioID = @UsuarioID AND CursoID = @CursoID)
+    BEGIN
+        INSERT INTO tInscripciones (UsuarioID, CursoID, FechaInscripcion)
+        VALUES (@UsuarioID, @CursoID, GETDATE());
+    END
+    ELSE
+    BEGIN
+        RAISERROR('El usuario ya está inscrito en este curso.', 16, 1);
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[MostrarCursos]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE PROCEDURE [dbo].[MostrarCursos]
 AS
@@ -348,6 +472,11 @@ BEGIN
     SELECT CursoID, Nombre, Descripcion, Requisitos, FechaInicio, FechaFin
     FROM tCursos
 END
+GO
+/****** Object:  StoredProcedure [dbo].[RegistrarCuenta]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[RegistrarCuenta]
@@ -368,6 +497,11 @@ BEGIN
 	END
 END
 GO
+/****** Object:  StoredProcedure [dbo].[RevisarCorreo]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 
 CREATE PROCEDURE [dbo].[RevisarCorreo]
@@ -378,6 +512,11 @@ BEGIN
 	FROM dbo.tUsuarios
 	WHERE Correo = @Correo
 END
+GO
+/****** Object:  StoredProcedure [dbo].[ValidarInicioSesion]    Script Date: 22/08/2025 14:45:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[ValidarInicioSesion]
@@ -391,4 +530,8 @@ BEGIN
 	WHERE Cedula = @Cedula
 	AND Contraseña = @Contraseña
 END
+GO
+USE [master]
+GO
+ALTER DATABASE [ProyectoFinal] SET  READ_WRITE 
 GO

@@ -28,7 +28,7 @@
                     <form class="form-horizontal m-t-20" id="loginform" asp-controller="Login" asp-action="RegistrarCuenta">
                         
                             <div class="form-group">
-                            <input type="text" class="form-control form-control" placeholder="Identificación" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Cedula" />
+                            <input type="text" class="form-control form-control" placeholder="Identificación" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Cedula" onkeyup="ConsultarPersonaApi();" />
                             </div>
                             <div class="form-group">
                             <input type="text" class="form-control form-control" placeholder="Nombre Completo" style="color: #333333; border: 1px solid #7C3AED; height: 40px" asp-for="Nombre" />
@@ -55,11 +55,11 @@
                     <div class="text-center">
                         <a class="small" href="@Url.Action("IniciarSesion", "Login")" style="color: #7C3AED;">Iniciar Sesión</a>
                     </div>
-                    <div class="text-center">
-                        <a class="small" href="@Url.Action("Index", "Home")" style="color: #7C3AED;">Pantalla Principal!</a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/lib/jquery.min.js"></script>
+<script src="~/js/ConsultarCedulas.js"></script>

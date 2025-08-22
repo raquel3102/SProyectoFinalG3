@@ -54,12 +54,30 @@
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuario" asp-action="ActualizarPerfil">Perfil</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Proyectos">Proyectos/Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Suscripciones" asp-action="Index" >Calendario</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Actividades" asp-action="Index">Gestionar Actividades</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Login" asp-action="IniciarSesion">Salir</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #000000;">
+                                Perfil
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end animated flipInY" aria-labelledby="perfilDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="@Url.Action("ActualizarPerfil","Usuario")">
+                                        <i class="fa fa-user me-2"></i> Mi Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="@Url.Action("CambiarContrasenna","Usuario")">
+                                        <i class="fa fa-lock me-2"></i> Seguridad
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                      
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Home" asp-action="Proyectos">Proyectos/Cursos</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Suscripciones" asp-action="Index">Calendario</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Actividades" asp-action="Index">Gestionar Actividades</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Login" asp-action="IniciarSesion">Salir</a></li>
                     </ul>
                 </div>
             </nav>

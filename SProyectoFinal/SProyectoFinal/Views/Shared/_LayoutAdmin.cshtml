@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <meta charset="utf-8">
+    <title>Red MenTe</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body style="font-family: 'Poppins', sans-serif; color: #333333;">
+    <!-- Header superior -->
+    <div class="container-fluid d-none d-lg-block bg-white border-bottom">
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center text-decoration-none" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/LogoRedMenTe.jpg" style="height: 50px; margin-right: 10px;" />
+                    <h1 class="m-0" style="font-size: 1.5rem;">
+                        <span style="color: #333;">Red</span><span style="color: #7C3AED;">MenTe</span>
+                    </h1>
+                </a>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center">
+                <i class="fas fa-map-marker-alt me-2" style="color:#7C3AED;"></i>
+                <div><h6 class="mb-0">San José, Costa Rica</h6></div>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center">
+                <i class="fas fa-envelope me-2" style="color:#7C3AED;"></i>
+                <div><h6 class="mb-0">info@ideasenaccion.com</h6></div>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center">
+                <i class="fas fa-phone me-2" style="color:#7C3AED;"></i>
+                <div><h6 class="mb-0">+506 8821-2322</h6></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación horizontal -->
+    <div class="container-fluid bg-light border-top">
+        <div class="row px-xl-5">
+            <nav class="navbar navbar-expand-lg navbar-light col-lg-9">
+                <a class="d-block d-lg-none text-decoration-none" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/LogoRedMenTe.jpg" style="height: 50px;" />
+                    <h1 class="m-0"><span style="color: #333;">Red</span><span style="color: #7C3AED;">MenTe</span></h1>
+                </a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Usuario" asp-action="ActualizarPerfil">Estadísticas y Reportes</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Home" asp-action="Proyectos">Proyectos/Evaluadores</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Suscripciones" asp-action="Index">Patrocinadores</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Actividades" asp-action="Index">Gestionar Voluntarios</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" style="color: #000000;" onmouseover="this.style.color='#7C3AED'" onmouseout="this.style.color='#000000'" asp-controller="Login" asp-action="IniciarSesion">Salir</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Cuerpo dinámico -->
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <div class="container-fluid text-white py-5 px-sm-3 px-lg-5" style="background:#333333;">
+            <div class="row pt-5">
+                <div class="col-md-6">
+                    <h5 class="text-uppercase mb-4" style="color: #7C3AED;">Contáctanos</h5>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i>San José, Costa Rica</p>
+                    <p><i class="fas fa-phone-alt mr-2"></i>+506 8821-2322</p>
+                    <p><i class="fas fa-envelope mr-2"></i>info@ideasenaccion.com</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <h5 class="text-uppercase mb-4" style="color: #7C3AED;">Síguenos</h5>
+                    <a class="btn btn-outline-light btn-square mr-2" role="button" href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-square mr-2" role="button" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-square mr-2" role="button" href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="btn btn-lg btn-lg-square back-to-top" style="background-color: #7C3AED; color: #000000;">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/mail/contact.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+
+</html>
+
+

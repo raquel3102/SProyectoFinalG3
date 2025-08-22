@@ -72,5 +72,31 @@ namespace ApiProyectoFinal.Controllers
             }
 
         }
+
+        [HttpPut]
+        [Route("CambiarContrasenna")]
+        public IActionResult CambiarContrasenna(Autenticacion autenticacion)
+        {
+            using (var contexto = new SqlConnection((_configuration.GetSection("ConnectionStrings:Connection").Value)))
+            {
+                //insert, delete or update
+                var resultado = contexto.Execute("ActualizarContrasenna", new
+                {
+
+                    autenticacion.ID_Usuario,
+                    autenticacion.Contraseña
+
+                });
+                if (resultado > 0)
+                {
+                    return Ok(_utilitarios.RespuestaCorrecta(autenticacion));
+                }
+                else
+                {
+                    return BadRequest(_utilitarios.RespuestaIncorrecta("Su info no fue actualizada correctamente"));
+                }
+            }
+
+        }
     }
 }

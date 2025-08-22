@@ -1,0 +1,43 @@
+﻿@model Autenticacion
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5" style="height: 90vh;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header text-white" style="background-color: #10B981;">
+                    <h5 class="m-0">Cambiar Mi Contraseña</h5>
+                </div>
+                <input id="Mensaje" type="hidden" value="@ViewBag.Mensaje" />
+                <form class="form-horizontal" asp-controller="Usuario" asp-action="CambiarContrasenna">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="fullname" class="col-sm-3 text-right control-label col-form-label" style="color: #7C3AED;">Contraseña Nueva</label>
+                            <div class="col-sm-6 mb-3">
+                                <input type="password" class="form-control" asp-for="Contraseña"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label" style="color: #7C3AED;">Confirmar Contraseña</label>
+                            <div class="col-sm-6 mb-3">
+                                <input type="password" class="form-control" asp-for="ConfirmarContraseña"/>
+                            </div>
+                        </div>
+             
+
+                        <div class="form-group m-b-2 text-center">
+                            <button type="submit" class="btn btn-info waves-effect waves-light">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/lib/jquery.min.js"></script>
+<script src="~/js/ConsultarCedulas.js"></script>
