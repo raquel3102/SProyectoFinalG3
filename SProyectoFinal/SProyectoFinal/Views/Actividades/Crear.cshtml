@@ -8,9 +8,16 @@
         <i class="fas fa-calendar-plus me-2" style="color: #7C3AED;"></i> Registrar nueva actividad
     </h3>
 
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert text-center" style="background-color: #10B981; color: #FFFFFF;">
+            @ViewBag.Mensaje
+        </div>
+    }
+
     <div class="card shadow-sm border-0">
         <div class="card-body">
-            <form asp-action="Crear" method="post">
+            <form class="form-horizontal m-t-20" id="loginform" asp-controller="Actividades" asp-action="Crear">
                 <div class="mb-3">
                     <label class="form-label fw-semibold" asp-for="Titulo">
                         <i class="fas fa-heading me-2" style="color: #7C3AED;"></i> Título
@@ -58,16 +65,17 @@
                     <label class="form-label fw-semibold" asp-for="OrganizadorID">
                         <i class="fas fa-user-tie me-2" style="color: #7C3AED;"></i> Organizador
                     </label>
-                    <select asp-for="OrganizadorID" class="form-select" id="nombreDropdown">
+                    <select asp-for="OrganizadorID" class="form-select" asp-items="ViewBag.Organizadores">
                         <option value="">-- Seleccione organizador --</option>
-                        <!-- Aquí se espera cargar dinámicamente las opciones -->
                     </select>
-                    <input type="hidden" asp-for="OrganizadorID" id="hiddenID_Rol" />
                 </div>
 
-                <div class="text-end">
-                    <button class="btn btn-success">
-                        <i class="fas fa-save me-2"></i> Guardar actividad
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-block" style="background-color: #3B82F6; color: #FFFFFF; border: none;"
+                            onmouseover="this.style.backgroundColor='#7C3AED'; this.style.color='#FFFFFF';"
+                            onmouseout="this.style.backgroundColor='#3B82F6'; this.style.color='#FFFFFF';">
+                        Guardar Actividad
                     </button>
                 </div>
             </form>

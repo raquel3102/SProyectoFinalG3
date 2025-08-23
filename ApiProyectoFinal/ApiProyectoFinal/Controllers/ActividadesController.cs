@@ -17,7 +17,21 @@ namespace ApiProyectoFinal.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet("ObtenerOrganizadores")]
+        public IActionResult ObtenerOrganizadores()
+        {
+            using var conexion = new SqlConnection(_configuration.GetConnectionString("Connection"));
+
+            var organizadores = conexion.Query(
+                "ObtenerOrganizadores",
+                commandType: CommandType.StoredProcedure
+            ).ToList();
+
+            return Ok(organizadores);
+        }
+
         [HttpPost]
+        [Route("CrearActividad")]
         public IActionResult CrearActividad([FromBody] Actividades model)
         {
             using var conexion = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -29,11 +43,10 @@ namespace ApiProyectoFinal.Controllers
                     model.Titulo,
                     model.Descripcion,
                     model.Fecha,
-                    model.Tipo, 
+                    model.Tipo,
                     model.Ubicacion,
                     model.LinkLlamada,
                     model.OrganizadorID
-
                 },
                 commandType: CommandType.StoredProcedure
             );
@@ -41,8 +54,11 @@ namespace ApiProyectoFinal.Controllers
             return Ok(new { Mensaje = "Actividad creada exitosamente." });
         }
 
-        [HttpGet("{id}")]
-        public IActionResult ObtenerActividadPorId(int id)
+
+
+        [HttpGet]
+        [Route("ObtenerActividad/{id}")]
+        public IActionResult ObtenerActividad(int id)
         {
             using var conexion = new SqlConnection(_configuration.GetConnectionString("Connection"));
 
@@ -52,11 +68,12 @@ namespace ApiProyectoFinal.Controllers
                 commandType: CommandType.StoredProcedure
             );
 
-            if (actividad == null)
+            if (actividad != null)
+                return Ok(actividad);
+            else
                 return NotFound(new { Mensaje = "Actividad no encontrada." });
-
-            return Ok(actividad);
         }
+
 
         [HttpPut("{id}")]
         public IActionResult EditarActividad(int id, [FromBody] Actividades model)

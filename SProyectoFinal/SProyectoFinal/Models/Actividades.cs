@@ -9,7 +9,7 @@
         public string? Tipo { get; set; }
         public string? Ubicacion { get; set; }
         public string? LinkLlamada { get; set; }
-        public int? OrganizadorID { get; set; }
-
+        public int OrganizadorID { get; set; }
+        public string NombreOrganizador { get; set; }
     }
 }

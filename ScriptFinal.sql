@@ -1,94 +1,11 @@
 USE [master]
 GO
-/****** Object:  Database [ProyectoFinal]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Database [ProyectoFinal]    Script Date: 23/08/2025 7:53:33 ******/
 CREATE DATABASE [ProyectoFinal]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'ProyectoFinal', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\ProyectoFinal.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'ProyectoFinal_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\ProyectoFinal_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
-GO
-ALTER DATABASE [ProyectoFinal] SET COMPATIBILITY_LEVEL = 160
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [ProyectoFinal].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [ProyectoFinal] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [ProyectoFinal] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [ProyectoFinal] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET  ENABLE_BROKER 
-GO
-ALTER DATABASE [ProyectoFinal] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [ProyectoFinal] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET RECOVERY FULL 
-GO
-ALTER DATABASE [ProyectoFinal] SET  MULTI_USER 
-GO
-ALTER DATABASE [ProyectoFinal] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [ProyectoFinal] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [ProyectoFinal] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [ProyectoFinal] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [ProyectoFinal] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [ProyectoFinal] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'ProyectoFinal', N'ON'
-GO
-ALTER DATABASE [ProyectoFinal] SET QUERY_STORE = ON
-GO
-ALTER DATABASE [ProyectoFinal] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
 GO
 USE [ProyectoFinal]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tActividades]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tActividades]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tActividades]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,7 +17,7 @@ CREATE TABLE [dbo].[tActividades](
 	[Fecha] [date] NOT NULL,
 	[Tipo] [varchar](50) NOT NULL,
 	[Ubicacion] [varchar](100) NOT NULL,
-	[LinkLlamada] [varchar](255) NOT NULL,
+	[LinkLlamada] [nvarchar](250) NULL,
 	[OrganizadorID] [int] NOT NULL,
  CONSTRAINT [PK__Activida__981483F05901123B] PRIMARY KEY CLUSTERED 
 (
@@ -108,11 +25,7 @@ CREATE TABLE [dbo].[tActividades](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tCertificados]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tCertificados]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tCertificados]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,11 +42,7 @@ CREATE TABLE [dbo].[tCertificados](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tCursos]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tCursos]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tCursos]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -152,7 +61,7 @@ CREATE TABLE [dbo].[tCursos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tErrores]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Table [dbo].[tErrores]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +76,7 @@ CREATE TABLE [dbo].[tErrores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tEvaluadores]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Table [dbo].[tEvaluadores]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -183,7 +92,7 @@ CREATE TABLE [dbo].[tEvaluadores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tInscripciones]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Table [dbo].[tInscripciones]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -200,11 +109,7 @@ CREATE TABLE [dbo].[tInscripciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tNotificaciones]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tNotificaciones]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tNotificaciones]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,11 +125,7 @@ CREATE TABLE [dbo].[tNotificaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tPatrocinadores]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tPatrocinadores]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tPatrocinadores]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -240,11 +141,7 @@ CREATE TABLE [dbo].[tPatrocinadores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tPerfiles]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tPerfiles]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tPerfiles]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -261,11 +158,7 @@ CREATE TABLE [dbo].[tPerfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tRecomendaciones]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tRecomendaciones]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tRecomendaciones]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,11 +175,7 @@ CREATE TABLE [dbo].[tRecomendaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tReportesImpacto]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  Table [dbo].[tReportesImpacto]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tReportesImpacto]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -307,11 +196,7 @@ CREATE TABLE [dbo].[tReportesImpacto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tRoles]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tRoles]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tRoles]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -325,11 +210,7 @@ CREATE TABLE [dbo].[tRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tSuscripciones]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tSuscripciones]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tSuscripciones]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -345,11 +226,7 @@ CREATE TABLE [dbo].[tSuscripciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  Table [dbo].[tUsuarios]    Script Date: 23/8/2025 00:54:03 ******/
-========
-/****** Object:  Table [dbo].[tUsuarios]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  Table [dbo].[tUsuarios]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -365,18 +242,10 @@ CREATE TABLE [dbo].[tUsuarios](
  CONSTRAINT [PK__Usuarios__2B3DE798699986D3] PRIMARY KEY CLUSTERED 
 (
 	[ID_Usuario] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
- CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED 
-(
-	[Cedula] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
- CONSTRAINT [uk_Correo] UNIQUE NONCLUSTERED 
-(
-	[Correo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tVoluntarios]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Table [dbo].[tVoluntarios]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -387,11 +256,35 @@ CREATE TABLE [dbo].[tVoluntarios](
 	[Estudios] [varchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
+SET IDENTITY_INSERT [dbo].[tActividades] ON 
+GO
+INSERT [dbo].[tActividades] ([ActividadID], [Titulo], [Descripcion], [Fecha], [Tipo], [Ubicacion], [LinkLlamada], [OrganizadorID]) VALUES (2, N'Actividad', N'Actividad', CAST(N'2025-08-23' AS Date), N'Taller', N'San Pedro', NULL, 6)
+GO
+INSERT [dbo].[tActividades] ([ActividadID], [Titulo], [Descripcion], [Fecha], [Tipo], [Ubicacion], [LinkLlamada], [OrganizadorID]) VALUES (3, N'Actividad2', N'sss', CAST(N'2025-08-23' AS Date), N'Taller', N'San Pedro', NULL, 6)
+GO
+SET IDENTITY_INSERT [dbo].[tActividades] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tCursos] ON 
+GO
+INSERT [dbo].[tCursos] ([CursoID], [Nombre], [Descripcion], [Requisitos], [FechaInicio], [FechaFin], [VideoUrl]) VALUES (1, N'Programación en C# Básico', N'Curso introductorio a la programación en C# con ejercicios prácticos.', N'Conocimientos básicos de informática.', CAST(N'2025-09-01' AS Date), CAST(N'2025-10-15' AS Date), N'yRHaY9I8JvQ')
+GO
+INSERT [dbo].[tCursos] ([CursoID], [Nombre], [Descripcion], [Requisitos], [FechaInicio], [FechaFin], [VideoUrl]) VALUES (2, N'Introducción a SQL Server', N'Aprende los fundamentos de bases de datos y lenguaje SQL en SQL Server.', N'Nociones de programación.', CAST(N'2025-09-10' AS Date), CAST(N'2025-11-01' AS Date), N'Atpj2UsF65M')
+GO
+INSERT [dbo].[tCursos] ([CursoID], [Nombre], [Descripcion], [Requisitos], [FechaInicio], [FechaFin], [VideoUrl]) VALUES (3, N'Desarrollo Web con ASP.NET MVC', N'Curso práctico para construir aplicaciones web usando ASP.NET MVC.', N'Conocimientos de C# y HTML.', CAST(N'2025-09-20' AS Date), CAST(N'2025-11-30' AS Date), N'DG15OMmtjd8')
+GO
+INSERT [dbo].[tCursos] ([CursoID], [Nombre], [Descripcion], [Requisitos], [FechaInicio], [FechaFin], [VideoUrl]) VALUES (4, N'Fundamentos de Ciencia de Datos', N'Curso introductorio sobre análisis de datos, estadística y Python.', N'Conocimientos básicos de matemáticas y programación.', CAST(N'2025-10-01' AS Date), CAST(N'2025-12-15' AS Date), N'dH5v_mcvlXM')
+GO
+INSERT [dbo].[tCursos] ([CursoID], [Nombre], [Descripcion], [Requisitos], [FechaInicio], [FechaFin], [VideoUrl]) VALUES (5, N'Cloud Computing en Azure', N'Curso para aprender a desplegar y administrar soluciones en Microsoft Azure.', N'Conocimientos de redes y sistemas operativos.', CAST(N'2025-10-15' AS Date), CAST(N'2025-12-20' AS Date), N'V65rQ8umwxw')
+GO
+SET IDENTITY_INSERT [dbo].[tCursos] OFF
+GO
 SET IDENTITY_INSERT [dbo].[tRoles] ON 
 GO
 INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (1, N'Admin')
 GO
 INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (2, N'Usuario')
+GO
+INSERT [dbo].[tRoles] ([ID_Rol], [Nombre_Rol]) VALUES (3, N'Organizador')
 GO
 SET IDENTITY_INSERT [dbo].[tRoles] OFF
 GO
@@ -401,11 +294,13 @@ INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Co
 GO
 INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (3, N'111111111', N'Pedro', N'pedro@correo.com', 1, N'03VicMhh+yxPhJlfIKVmdQ==', 1)
 GO
+INSERT [dbo].[tUsuarios] ([ID_Usuario], [Cedula], [Nombre], [Correo], [Rol], [Contraseña], [Estado]) VALUES (6, N'222222222', N'Ana', N'ana@correo.com', 3, N'03VicMhh+yxPhJlfIKVmdQ==', 1)
+GO
 SET IDENTITY_INSERT [dbo].[tUsuarios] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Cedula]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Index [uk_Cedula]    Script Date: 23/08/2025 7:53:34 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED 
 (
 	[Cedula] ASC
@@ -413,7 +308,7 @@ ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Cedula] UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [uk_Correo]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  Index [uk_Correo]    Script Date: 23/08/2025 7:53:34 ******/
 ALTER TABLE [dbo].[tUsuarios] ADD  CONSTRAINT [uk_Correo] UNIQUE NONCLUSTERED 
 (
 	[Correo] ASC
@@ -521,8 +416,7 @@ REFERENCES [dbo].[tUsuarios] ([ID_Usuario])
 GO
 ALTER TABLE [dbo].[tVoluntarios] CHECK CONSTRAINT [FK_tVoluntarios_Usuarios]
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  StoredProcedure [dbo].[ActualizarActividad]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarActividad]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -549,10 +443,7 @@ BEGIN
     WHERE ActividadID = @ActividadID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarContra]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  StoredProcedure [dbo].[ActualizarContra]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  StoredProcedure [dbo].[ActualizarContra]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -570,7 +461,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarContrasenna]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarContrasenna]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -589,7 +480,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarUsuario]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarUsuario]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -616,7 +507,7 @@ IF NOT EXISTS(SELECT 1 FROM dbo.tUsuarios
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarUsuario]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarUsuario]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -632,8 +523,7 @@ BEGIN
 	WHERE ID_Usuario = @ID_Usuario
 END
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  StoredProcedure [dbo].[EliminarSuscripcion]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[EliminarSuscripcion]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -646,10 +536,7 @@ BEGIN
     WHERE SuscripcionID = @SuscripcionID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[InscribirUsuario]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  StoredProcedure [dbo].[InscribirUsuario]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  StoredProcedure [dbo].[InscribirUsuario]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -673,8 +560,7 @@ BEGIN
     END
 END
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  StoredProcedure [dbo].[InsertarActividad]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[InsertarActividad]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -689,11 +575,24 @@ CREATE PROCEDURE [dbo].[InsertarActividad]
     @OrganizadorID INT
 AS
 BEGIN
-    INSERT INTO tActividades (Titulo, Descripcion, Fecha, Tipo, Ubicacion, LinkLlamada, OrganizadorID)
-    VALUES (@Titulo, @Descripcion, @Fecha, @Tipo, @Ubicacion, @LinkLlamada, @OrganizadorID)
+    SET NOCOUNT ON;
+
+    -- Verificar que el usuario tenga asignado el rol 3 (Organizador)
+    IF EXISTS (
+        SELECT 1
+        FROM tUsuarios U
+        INNER JOIN tRoles R ON U.Rol = R.ID_Rol
+        WHERE U.ID_Usuario = @OrganizadorID
+          AND R.ID_Rol = 3
+    )
+    BEGIN
+        INSERT INTO tActividades (Titulo, Descripcion, Fecha, Tipo, Ubicacion, LinkLlamada, OrganizadorID)
+        VALUES (@Titulo, @Descripcion, @Fecha, @Tipo, @Ubicacion, @LinkLlamada, @OrganizadorID);
+    END
 END
+
 GO
-/****** Object:  StoredProcedure [dbo].[InsertarSuscripcion]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[InsertarSuscripcion]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -707,7 +606,30 @@ BEGIN
     VALUES (@UsuarioID, @ActividadID, GETDATE())
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MostrarActividadPorId]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[MostrarActividades]    Script Date: 23/08/2025 7:53:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[MostrarActividades]
+AS
+BEGIN
+    SELECT 
+        a.ActividadID,
+        a.Titulo,
+        a.Descripcion,
+        a.Fecha,
+        a.Tipo,
+        a.Ubicacion,
+        a.LinkLlamada,
+        a.OrganizadorID,
+        u.Nombre AS NombreOrganizador
+    FROM tActividades a
+    INNER JOIN tUsuarios u ON a.OrganizadorID = u.ID_Usuario
+    ORDER BY a.Fecha DESC
+END
+GO
+/****** Object:  StoredProcedure [dbo].[MostrarActividadPorId]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -720,10 +642,7 @@ BEGIN
     WHERE ActividadID = @ActividadID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MostrarCursos]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  StoredProcedure [dbo].[MostrarCursos]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  StoredProcedure [dbo].[MostrarCursos]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -736,8 +655,7 @@ BEGIN
     FROM tCursos
 END
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  StoredProcedure [dbo].[MostrarSuscripcionesPorActividad]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[MostrarSuscripcionesPorActividad]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -751,7 +669,7 @@ BEGIN
     WHERE s.ActividadID = @ActividadID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MostrarSuscripcionesPorUsuario]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[MostrarSuscripcionesPorUsuario]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -766,10 +684,23 @@ BEGIN
     WHERE s.UsuarioID = @UsuarioID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarCuenta]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  StoredProcedure [dbo].[RegistrarCuenta]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  StoredProcedure [dbo].[ObtenerOrganizadores]    Script Date: 23/08/2025 7:53:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ObtenerOrganizadores]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT u.ID_Usuario, u.Nombre
+    FROM tUsuarios u
+    INNER JOIN tRoles r ON u.Rol = r.ID_Rol
+    WHERE r.ID_Rol = 3;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[RegistrarCuenta]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -793,7 +724,7 @@ BEGIN
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RevisarCorreo]    Script Date: 22/08/2025 14:45:16 ******/
+/****** Object:  StoredProcedure [dbo].[RevisarCorreo]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -809,8 +740,7 @@ BEGIN
 	WHERE Correo = @Correo
 END
 GO
-<<<<<<<< HEAD:ProyectoFinal2.2_2.sql
-/****** Object:  StoredProcedure [dbo].[sp_GetReportesImpacto]    Script Date: 22/8/2025 04:18:15 ******/
+/****** Object:  StoredProcedure [dbo].[sp_GetReportesImpacto]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -832,10 +762,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ValidarInicioSesion]    Script Date: 22/8/2025 04:18:15 ******/
-========
-/****** Object:  StoredProcedure [dbo].[ValidarInicioSesion]    Script Date: 22/08/2025 14:45:16 ******/
->>>>>>>> origin/main:ProyectoFinal1.9.sql
+/****** Object:  StoredProcedure [dbo].[ValidarInicioSesion]    Script Date: 23/08/2025 7:53:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
