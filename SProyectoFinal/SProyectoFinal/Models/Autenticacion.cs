@@ -11,6 +11,7 @@
         public string? Correo { get; set; }
 
         public string? Contraseña { get; set; }
+        public string? ConfirmarContraseña { get; set; }
 
         public int? Rol { get; set; }
         public bool Estado { get; set; } = true;

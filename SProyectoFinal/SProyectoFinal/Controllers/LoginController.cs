@@ -74,8 +74,15 @@ namespace SProyectoFinal.Controllers
                     HttpContext.Session.SetString("IdRol", datos?.Contenido?.Rol.ToString()!);
                     HttpContext.Session.SetString("NombreRol", datos?.Contenido?.Nombre_Rol!);
                     HttpContext.Session.SetString("JWT", datos?.Contenido?.Token!);
-                    return RedirectToAction("Index", "Home");
-                 }
+                    if (datos?.Contenido?.Rol == 1) // Admin
+                    {
+                        return RedirectToAction("IndexAdmin", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
                 else
                 {
                     var respuesta = resultado.Content.ReadFromJsonAsync<RespuestasEstandar>().Result;

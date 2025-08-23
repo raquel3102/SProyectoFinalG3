@@ -80,5 +80,47 @@ namespace SProyectoFinal.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        public IActionResult CambiarContrasenna(Autenticacion autenticacion)
+        {
+            if (autenticacion.Contraseña != autenticacion.ConfirmarContraseña)
+            {
+                ViewBag.Mensaje = "Las contraseñas no coinciden.";
+                return View();
+            }
+            autenticacion.Contraseña = _utilitarios.Encrypt(autenticacion.Contraseña!);
+
+            using (var http = _http.CreateClient())
+            {
+                var IdUsuario = HttpContext.Session.GetString("IdUsuario");
+                autenticacion.ID_Usuario = int.Parse(IdUsuario!);
+
+
+                http.BaseAddress = new Uri(_configuration.GetSection("Start:ApiUrlRaquel").Value!);
+                http.DefaultRequestHeaders.Add("Authorization", "Bearer " + HttpContext.Session.GetString("JWT"));
+                var resultado = http.PutAsJsonAsync("api/Usuario/CambiarContrasenna", autenticacion).Result;
+
+                if (resultado.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+
+                    var respuesta = resultado.Content.ReadFromJsonAsync<RespuestasEstandar>().Result;
+                    ViewBag.Mensaje = respuesta!.Mensaje;
+                    return View();
+                }
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult CambiarContrasenna()
+        {
+            return View();
+        }
     }
 }
