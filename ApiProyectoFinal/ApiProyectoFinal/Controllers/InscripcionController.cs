@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Reflection.Metadata.Ecma335;
-using ApiProyectoFinal.Models;
+﻿using ApiProyectoFinal.Models;
 using ApiProyectoFinal.Services;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using System.Data;
-using Dapper;
 
 namespace ApiProyectoFinal.Controllers
 {
@@ -36,7 +32,7 @@ namespace ApiProyectoFinal.Controllers
                 return BadRequest("Debe indicar un curso válido para inscribirse.");
             }
 
-            // ✅ Obtener el usuario desde el JWT de forma segura
+
             var idClaim = User.FindFirst("ID_Usuario");
             if (idClaim == null || !int.TryParse(idClaim.Value, out int usuarioId))
             {
@@ -54,7 +50,7 @@ namespace ApiProyectoFinal.Controllers
                         UsuarioID = inscripcion.UsuarioID,
                         CursoID = inscripcion.CursoID
                     }
-                   
+
                 );
 
                 if (resultado > 0)
@@ -82,6 +78,40 @@ namespace ApiProyectoFinal.Controllers
                 return Ok(cursosIds);
             }
         }
+
+
+        [HttpPost("MarcarCompletado")]
+        public IActionResult MarcarCompletado([FromBody] Inscripcion inscripcion)
+        {
+            if (inscripcion == null || inscripcion.CursoID <= 0)
+            {
+                return BadRequest("Debe indicar un curso válido.");
+            }
+
+            var idClaim = User.FindFirst("ID_Usuario");
+            if (idClaim == null || !int.TryParse(idClaim.Value, out int usuarioId))
+            {
+                return Unauthorized("No se pudo obtener el ID del usuario desde el token.");
+            }
+
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("Connection")))
+            {
+                var result = connection.Execute(
+                    "UPDATE tInscripciones SET Completado = 1 WHERE UsuarioID = @UsuarioID AND CursoID = @CursoID",
+                    new { UsuarioID = usuarioId, CursoID = inscripcion.CursoID }
+                );
+
+                if (result > 0)
+                {
+                    return Ok(_utilitarios.RespuestaCorrecta(inscripcion));
+                }
+                else
+                {
+                    return BadRequest("No se pudo actualizar el estado.");
+                }
+            }
+        }
+
 
 
 

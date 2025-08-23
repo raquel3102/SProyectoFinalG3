@@ -46,6 +46,36 @@ namespace ApiProyectoFinal.Controllers
 
         }
 
+        [Authorize]
+        [HttpGet("Detalle/{id}")]
+        public IActionResult DetalleCurso(int id)
+        {
+            var idClaim = User.FindFirst("ID_Usuario");
+            if (idClaim == null || !int.TryParse(idClaim.Value, out int usuarioId))
+            {
+                return Unauthorized("No se pudo obtener el ID del usuario desde el token.");
+            }
+
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("Connection")))
+            {
+                var curso = connection.QueryFirstOrDefault<Curso>(
+                    @"SELECT c.CursoID, c.Nombre, c.Descripcion, c.Requisitos, c.FechaInicio, c.FechaFin, c.VideoUrl
+                      FROM tCursos c
+                      INNER JOIN tInscripciones i ON i.CursoID = c.CursoID
+                      WHERE c.CursoID = @CursoID AND i.UsuarioID = @UsuarioID",
+                    new { CursoID = id, UsuarioID = usuarioId }
+                );
+
+                if (curso == null)
+                {
+                    return NotFound("No tienes acceso a este curso o no existe.");
+                }
+
+                return Ok(curso);
+            }
+        }
+
+
 
 
 

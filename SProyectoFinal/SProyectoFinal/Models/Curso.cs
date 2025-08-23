@@ -9,6 +9,7 @@
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
 
+        public string VideoUrl { get; set; } = "";
         public bool EstaInscrito { get; set; }
 
 

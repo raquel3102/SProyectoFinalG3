@@ -1,0 +1,58 @@
+﻿@model Curso
+
+<div class="container mt-5">
+    <h2>@Model.Nombre</h2>
+    <p>@Model.Descripcion</p>
+
+    <!-- Contenedor para YouTube Player -->
+    <div class="ratio ratio-16x9 mb-3">
+        <div id="player"></div>
+    </div>
+
+    <button id="btnCompletar" class="btn btn-success" disabled>Marcar como Completado</button>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    var player;
+    var btnCompletar = document.getElementById('btnCompletar');
+
+    // Esta función la llama la API de YouTube cuando está lista
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '360',
+            width: '640',
+            videoId: '@Model.VideoUrl', // Aquí debe ser el VideoID, no la URL completa
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            btnCompletar.disabled = false;
+        }
+    }
+
+    btnCompletar.addEventListener("click", function () {
+        fetch('@ViewBag.ApiUrl/api/Inscripcion/MarcarCompletado', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + '@ViewBag.JWT'
+            },
+            body: JSON.stringify({ CursoID: @Model.CursoID })
+
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Curso marcado como completado.");
+                btnCompletar.disabled = true;
+            } else {
+                alert("No se pudo marcar como completado.");
+            }
+        })
+        .catch(error => console.error(error));
+    });
+</script>

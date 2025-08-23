@@ -8,5 +8,6 @@
         public string Requisitos { get; set; } = "";
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
+        public string VideoUrl { get; set; } = ""; // NUEVO
     }
 }
